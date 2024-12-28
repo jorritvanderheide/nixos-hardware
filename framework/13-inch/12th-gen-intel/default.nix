@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ../common
     ../common/intel.nix
@@ -23,7 +26,7 @@
       boot.blacklistedKernelModules = [
         # This enables the brightness and airplane mode keys to work
         # https://community.frame.work/t/12th-gen-not-sending-xf86monbrightnessup-down/20605/11
-        "hid-sensor-hub"
+        # "hid-sensor-hub" # Disable sensor blacklisting
         # This fixes controller crashes during sleep
         # https://community.frame.work/t/tracking-fn-key-stops-working-on-popos-after-a-while/21208/32
         (lib.mkIf (config.hardware.framework.enableKmod == false) "cros_ec_lpcs")
@@ -41,8 +44,8 @@
       # https://community.frame.work/t/responded-12th-gen-not-sending-xf86monbrightnessup-down/20605/67
       systemd.services.bind-keys-driver = {
         description = "Bind brightness and airplane mode keys to their driver";
-        wantedBy = [ "default.target" ];
-        after = [ "network.target" ];
+        wantedBy = ["default.target"];
+        after = ["network.target"];
         serviceConfig = {
           Type = "oneshot";
           User = "root";
