@@ -12,6 +12,7 @@
     {
       hardware.intelgpu.loadInInitrd = lib.versionOlder config.boot.kernelPackages.kernel.version "6.2";
       # same as 13th gen framework 13-inch
+      hardware.framework.laptop13.audioEnhancement.enable = true;
       hardware.framework.laptop13.audioEnhancement.rawDeviceName = lib.mkDefault "alsa_output.pci-0000_00_1f.3.analog-stereo";
     }
     # https://community.frame.work/t/tracking-hard-freezing-on-fedora-36-with-the-new-12th-gen-system/20675/391
